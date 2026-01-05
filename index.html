@@ -5,9 +5,82 @@
 <title>Mời Sinh Nhật Bé Dâu Tây</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="css/style.css" rel="stylesheet"/>
+<link rel="shortcut icon" href="images/baby.png" type="image/x-icon">
+<style>
+    /* Animation toàn trang */
+    .page-initial {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    .page-animated {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal-hidden {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    /* Animation tùy chỉnh cho countdown */
+    @keyframes countdownFlip {
+        0% {
+            transform: rotateX(0deg) scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: rotateX(90deg) scale(0.8);
+            opacity: 0.5;
+        }
+        100% {
+            transform: rotateX(0deg) scale(1);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes countdownBounce {
+        0%, 100% {
+            transform: translateY(0) scale(1);
+        }
+        25% {
+            transform: translateY(-5px) scale(1.05);
+        }
+        50% {
+            transform: translateY(0) scale(1.1);
+        }
+        75% {
+            transform: translateY(-3px) scale(1.05);
+        }
+    }
+    
+    .countdown-animate {
+        animation: countdownBounce 0.6s ease-out;
+    }
+    
+    .countdown-container-animate {
+        animation: pulse 0.6s ease-out;
+    }
+    
+    /* Hiệu ứng glow khi số thay đổi */
+    #countdown-days-container.animate-pulse,
+    #countdown-hours-container.animate-pulse,
+    #countdown-minutes-container.animate-pulse,
+    #countdown-seconds-container.animate-pulse {
+        box-shadow: 0 0 20px rgba(238, 43, 75, 0.3);
+    }
+    /* Có thể bổ sung các animation khác cho toàn trang tại đây */
+</style>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
         tailwind.config = {
@@ -23,7 +96,7 @@
                         "text-muted": "#9a4c59",
                     },
                     fontFamily: {
-                        "display": ["Spline Sans", "sans-serif"]
+                        "display": ["Roboto", "system-ui", "sans-serif"]
                     },
                     borderRadius: {
                         "DEFAULT": "1rem",
@@ -35,17 +108,34 @@
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-10px)' },
+                        },
+                        flip: {
+                            '0%': { transform: 'rotateX(0deg)' },
+                            '50%': { transform: 'rotateX(90deg)' },
+                            '100%': { transform: 'rotateX(0deg)' },
+                        },
+                        bounceIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0.5' },
+                            '50%': { transform: 'scale(1.1)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        pulse: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' },
                         }
                     },
                     animation: {
                         float: 'float 3s ease-in-out infinite',
+                        flip: 'flip 0.6s ease-in-out',
+                        bounceIn: 'bounceIn 0.5s ease-out',
+                        pulse: 'pulse 2s ease-in-out infinite',
                     }
                 },
             },
         }
     </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-text-main font-display selection:bg-primary selection:text-white">
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display selection:bg-primary selection:text-white page-initial">
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-background-light/80 border-b border-primary/10">
 <div class="max-w-[1200px] mx-auto px-4 sm:px-10 py-4 flex items-center justify-between">
@@ -133,7 +223,7 @@
 <circle cx="12" cy="12" fill="#fff5f7" r="3"></circle>
 </svg>
 </div>
-<div class="w-full h-full rounded-full overflow-hidden border-[8px] border-white shadow-2xl bg-cover bg-center relative z-0" data-alt="Cute baby girl smiling wearing a pink dress with strawberry patterns" style='background-image: url("images/baby.jpg");'>
+<div class="w-full h-full rounded-full overflow-hidden border-[8px] border-white shadow-2xl bg-cover bg-center relative z-0" data-alt="Cute baby girl smiling wearing a pink dress with strawberry patterns" style='background-image: url("images/baby.png");'>
 </div>
 </div>
 </div>
@@ -149,42 +239,42 @@
 </div>
 </div>
 <div class="grid grid-cols-4 gap-3 md:gap-6">
-<div class="flex flex-col items-center gap-3">
-<div class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group">
-<div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
-</div>
-<p class="text-primary text-3xl md:text-4xl font-black z-10">05</p>
-</div>
-<p class="text-text-muted text-sm font-medium">Ngày</p>
-</div>
-<div class="flex flex-col items-center gap-3">
-<div class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group">
-<div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
-</div>
-<p class="text-primary text-3xl md:text-4xl font-black z-10">18</p>
-</div>
-<p class="text-text-muted text-sm font-medium">Giờ</p>
-</div>
-<div class="flex flex-col items-center gap-3">
-<div class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group">
-<div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
-</div>
-<p class="text-primary text-3xl md:text-4xl font-black z-10">30</p>
-</div>
-<p class="text-text-muted text-sm font-medium">Phút</p>
-</div>
-<div class="flex flex-col items-center gap-3">
-<div class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group">
-<div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
-</div>
-<p class="text-primary text-3xl md:text-4xl font-black z-10">00</p>
-</div>
-<p class="text-text-muted text-sm font-medium">Giây</p>
-</div>
+            <div class="flex flex-col items-center gap-3">
+                <div id="countdown-days-container" class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
+                    <div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
+                    </div>
+                    <p id="countdown-days" class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00</p>
+                </div>
+                <p class="text-text-muted text-sm font-medium">Ngày</p>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+                <div id="countdown-hours-container" class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
+                    <div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
+                    </div>
+                    <p id="countdown-hours" class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00</p>
+                </div>
+                <p class="text-text-muted text-sm font-medium">Giờ</p>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+                <div id="countdown-minutes-container" class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
+                    <div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
+                    </div>
+                    <p id="countdown-minutes" class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00</p>
+                </div>
+                <p class="text-text-muted text-sm font-medium">Phút</p>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+                <div id="countdown-seconds-container" class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
+                    <div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
+                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
+                    </div>
+                    <p id="countdown-seconds" class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00</p>
+                </div>
+                <p class="text-text-muted text-sm font-medium">Giây</p>
+            </div>
 </div>
 </div>
 </section>
@@ -257,7 +347,8 @@
 <p class="text-text-muted">Dễ dàng tìm đường đến chung vui cùng gia đình</p>
 </div>
 <div class="relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-lg border border-primary/10">
-<div class="absolute inset-0 bg-cover bg-center" data-alt="Map view showing the streets of Thanh Hoa city with a pin on the venue location" data-location="Thanh Hoa, Vietnam" style='background-image: url("images/map.jpg");'>
+<div class="absolute inset-0">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5454.630069965481!2d105.76780887655686!3d19.80929493155215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3136f99524d9d769%3A0x2e2afcfb3c5dee25!2sDai%20Viet%20Palace%20-%20Wedding%20%26%20Convention!5e1!3m2!1svi!2s!4v1767606479970!5m2!1svi!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 <div class="absolute inset-0 p-4 md:p-6 flex flex-col justify-between pointer-events-none">
 <div class="w-full max-w-md pointer-events-auto bg-white/95 backdrop-blur rounded-xl shadow-lg p-2 flex items-center gap-2">
@@ -296,7 +387,133 @@
 <p class="text-text-muted text-sm max-w-md">Cảm ơn các cô chú, anh chị đã dành thời gian quan tâm và đến dự tiệc. Sự hiện diện của mọi người là niềm hạnh phúc lớn lao của gia đình.</p>
 <p class="text-text-muted/50 text-xs mt-4">Designed with ❤️ for Dâu Tây's 1st Birthday</p>
 </div>
-</footer>
+    </footer>
 </div>
+
+<script>
+    // Thời gian tiệc: 18:00, Thứ Tư, 24/01/2024
+    const eventDate = new Date('2026-01-24T18:00:00');
+    
+    // Lưu giá trị cũ để so sánh
+    let previousValues = {
+        days: null,
+        hours: null,
+        minutes: null,
+        seconds: null
+    };
+    
+    // Hàm để trigger animation khi số thay đổi
+    function animateCountdown(elementId, containerId) {
+        const element = document.getElementById(elementId);
+        const container = document.getElementById(containerId);
+        
+        // Thêm animation cho số với hiệu ứng bounce
+        element.classList.remove('countdown-animate', 'animate-bounceIn');
+        void element.offsetWidth; // Trigger reflow để reset animation
+        element.classList.add('countdown-animate');
+        
+        // Thêm animation cho container với hiệu ứng pulse và glow
+        container.classList.remove('countdown-container-animate', 'animate-pulse');
+        void container.offsetWidth; // Trigger reflow
+        container.classList.add('countdown-container-animate', 'animate-pulse');
+        
+        // Xóa class sau khi animation kết thúc
+        setTimeout(() => {
+            element.classList.remove('countdown-animate', 'animate-bounceIn');
+            container.classList.remove('countdown-container-animate', 'animate-pulse');
+        }, 600);
+    }
+    
+    function updateCountdown() {
+        const now = new Date();
+        const timeLeft = eventDate - now;
+        
+        // Nếu thời gian đã qua, hiển thị 00:00:00:00
+        if (timeLeft <= 0) {
+            document.getElementById('countdown-days').textContent = '00';
+            document.getElementById('countdown-hours').textContent = '00';
+            document.getElementById('countdown-minutes').textContent = '00';
+            document.getElementById('countdown-seconds').textContent = '00';
+            return;
+        }
+        
+        // Tính toán số ngày, giờ, phút, giây còn lại
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        // Format số với 2 chữ số
+        const daysStr = String(days).padStart(2, '0');
+        const hoursStr = String(hours).padStart(2, '0');
+        const minutesStr = String(minutes).padStart(2, '0');
+        const secondsStr = String(seconds).padStart(2, '0');
+        
+        // Kiểm tra và cập nhật với animation nếu giá trị thay đổi
+        if (previousValues.days !== daysStr) {
+            document.getElementById('countdown-days').textContent = daysStr;
+            animateCountdown('countdown-days', 'countdown-days-container');
+            previousValues.days = daysStr;
+        }
+        
+        if (previousValues.hours !== hoursStr) {
+            document.getElementById('countdown-hours').textContent = hoursStr;
+            animateCountdown('countdown-hours', 'countdown-hours-container');
+            previousValues.hours = hoursStr;
+        }
+        
+        if (previousValues.minutes !== minutesStr) {
+            document.getElementById('countdown-minutes').textContent = minutesStr;
+            animateCountdown('countdown-minutes', 'countdown-minutes-container');
+            previousValues.minutes = minutesStr;
+        }
+        
+        // Giây luôn thay đổi, nên luôn có animation
+        if (previousValues.seconds !== secondsStr) {
+            document.getElementById('countdown-seconds').textContent = secondsStr;
+            animateCountdown('countdown-seconds', 'countdown-seconds-container');
+            previousValues.seconds = secondsStr;
+        }
+    }
+    
+    // Cập nhật ngay lập tức khi trang load
+    updateCountdown();
+    
+    // Cập nhật mỗi giây
+    setInterval(updateCountdown, 1000);
+
+    // Animation cho toàn bộ trang (fade-in + scroll reveal)
+    document.addEventListener('DOMContentLoaded', () => {
+        const body = document.body;
+        // Hiệu ứng fade-in cho toàn trang
+        requestAnimationFrame(() => {
+            body.classList.add('page-animated');
+        });
+
+        // Hiệu ứng reveal khi cuộn cho các khu vực chính
+        const revealElements = document.querySelectorAll('header, section, footer');
+
+        revealElements.forEach((el) => {
+            el.classList.add('reveal-hidden');
+        });
+
+        const observer = new IntersectionObserver(
+            (entries, observerInstance) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-visible');
+                        entry.target.classList.remove('reveal-hidden');
+                        observerInstance.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.15,
+            }
+        );
+
+        revealElements.forEach((el) => observer.observe(el));
+    });
+</script>
 
 </body></html>
