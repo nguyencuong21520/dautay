@@ -334,7 +334,67 @@
 <p class="text-text-muted text-sm">Thành phố Thanh Hóa</p>
 </div>
 </div>
+    </div>
 </div>
+</section>
+<section class="py-16 px-4 bg-white rounded-[3rem] mx-4 md:mx-10 my-10 shadow-sm border border-primary/5 relative overflow-hidden reveal-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-[0.03] rotate-45 pointer-events-none">
+<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z" fill="#ee2b4b"></path></svg>
+</div>
+<div class="absolute bottom-0 left-0 w-40 h-40 opacity-[0.03] -rotate-12 pointer-events-none">
+<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z" fill="#ee2b4b"></path></svg>
+</div>
+<div class="max-w-[800px] mx-auto relative z-10">
+<div class="text-center mb-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+<span class="material-symbols-outlined text-sm">edit</span>
+Đăng Ký Tham Dự
+</div>
+<div class="relative inline-block mb-4">
+<h2 class="text-text-main text-3xl md:text-4xl font-black leading-tight relative z-10">
+Xác Nhận Tham Dự Tiệc
+</h2>
+<div class="absolute -top-6 -right-6 w-10 h-10 rotate-12 animate-float">
+<svg class="drop-shadow-sm" fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z" fill="#ee2b4b"></path>
+<path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z" fill="#4ade80"></path>
+<circle cx="35" cy="45" fill="white" opacity="0.6" r="4"></circle>
+<circle cx="65" cy="45" fill="white" opacity="0.6" r="4"></circle>
+<circle cx="50" cy="75" fill="white" opacity="0.6" r="4"></circle>
+</svg>
+</div>
+</div>
+<p class="text-text-muted text-lg leading-relaxed">
+Vui lòng điền thông tin để gia đình có thể chuẩn bị tốt nhất cho buổi tiệc
+</p>
+</div>
+<form id="rsvp-form" class="space-y-6">
+<div class="space-y-2">
+<label for="fullname" class="block text-text-main text-sm font-semibold">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">person</span>
+Họ và Tên <span class="text-primary">*</span>
+</span>
+</label>
+<input type="text" id="fullname" name="fullname" required class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all" placeholder="Nhập họ và tên của bạn"/>
+</div>
+<div class="space-y-2">
+<label for="phone" class="block text-text-main text-sm font-semibold">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">phone</span>
+Số Điện Thoại <span class="text-primary">*</span>
+</span>
+</label>
+<input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all" placeholder="Nhập số điện thoại của bạn"/>
+</div>
+<div class="pt-4">
+<button type="submit" class="w-full flex items-center justify-center gap-2 rounded-full h-14 px-8 bg-primary text-white text-base font-bold shadow-xl shadow-primary/20 hover:bg-primary/90 hover:shadow-primary/30 transition-all duration-300 transform hover:scale-[1.02]">
+<span class="material-symbols-outlined">check_circle</span>
+Gửi Xác Nhận Tham Dự
+</button>
+</div>
+<div id="form-message" class="hidden mt-4 p-4 rounded-xl text-sm font-medium text-center"></div>
+</form>
 </div>
 </section>
 <section class="py-10 px-4 md:px-10 pb-20">
@@ -513,6 +573,78 @@
         );
 
         revealElements.forEach((el) => observer.observe(el));
+    });
+
+    // Xử lý form đăng ký tham dự
+    document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const fullname = document.getElementById('fullname').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const messageDiv = document.getElementById('form-message');
+        
+        // Validate
+        if (!fullname || !phone) {
+            messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-red-50 text-red-600 border border-red-200';
+            messageDiv.textContent = 'Vui lòng điền đầy đủ thông tin!';
+            messageDiv.classList.remove('hidden');
+            return;
+        }
+        
+        // Validate phone number (basic check)
+        const phoneRegex = /^[0-9]{10,11}$/;
+        if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+            messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-red-50 text-red-600 border border-red-200';
+            messageDiv.textContent = 'Số điện thoại không hợp lệ! Vui lòng nhập số điện thoại 10-11 chữ số.';
+            messageDiv.classList.remove('hidden');
+            return;
+        }
+        
+        // Simulate form submission (you can replace this with actual API call)
+        messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-green-50 text-green-600 border border-green-200';
+        messageDiv.innerHTML = `
+            <div class="flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Cảm ơn bạn đã xác nhận tham dự! Gia đình rất vui mừng được đón tiếp bạn.</span>
+            </div>
+        `;
+        messageDiv.classList.remove('hidden');
+        
+        // Reset form
+        document.getElementById('rsvp-form').reset();
+        
+        // Scroll to message
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            messageDiv.classList.add('hidden');
+        }, 5000);
+    });
+
+    // Link RSVP buttons to form section
+    document.addEventListener('DOMContentLoaded', function() {
+        // Find buttons by their text content
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+            const buttonText = button.textContent.trim();
+            if (buttonText.includes('RSVP') || buttonText.includes('Xác nhận tham dự')) {
+                button.addEventListener('click', function(e) {
+                    // Only scroll if it's not the form submit button
+                    if (!button.closest('#rsvp-form')) {
+                        e.preventDefault();
+                        const formSection = document.getElementById('rsvp-form')?.closest('section');
+                        if (formSection) {
+                            formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            // Focus on first input
+                            setTimeout(() => {
+                                document.getElementById('fullname')?.focus();
+                            }, 500);
+                        }
+                    }
+                });
+            }
+        });
     });
 </script>
 
