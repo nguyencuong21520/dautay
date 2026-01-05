@@ -1,143 +1,246 @@
 <!DOCTYPE html>
-<html class="light" lang="vi"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Mời Sinh Nhật Bé Dâu Tây</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="css/style.css" rel="stylesheet"/>
-<link rel="shortcut icon" href="images/baby.png" type="image/x-icon">
-<style>
-    /* Animation toàn trang */
-    .page-initial {
-        opacity: 0;
-        transform: translateY(10px);
-    }
+<html class="light" lang="vi">
 
-    .page-animated {
-        opacity: 1;
-        transform: translateY(0);
-        transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mời Sinh Nhật Bé Dâu Tây</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="images/baby.png" type="image/x-icon">
+    <style>
+        /* Animation toàn trang */
+        .page-initial {
+            opacity: 0;
+            transform: translateY(10px);
+        }
 
-    .reveal-hidden {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    .reveal-visible {
-        opacity: 1;
-        transform: translateY(0);
-        transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    /* Animation tùy chỉnh cho countdown */
-    @keyframes countdownFlip {
-        0% {
-            transform: rotateX(0deg) scale(1);
+        .page-animated {
             opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
-        50% {
-            transform: rotateX(90deg) scale(0.8);
-            opacity: 0.5;
+
+        .reveal-hidden {
+            opacity: 0;
+            transform: translateY(30px);
         }
-        100% {
-            transform: rotateX(0deg) scale(1);
+
+        .reveal-visible {
             opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
-    }
-    
-    @keyframes countdownBounce {
-        0%, 100% {
-            transform: translateY(0) scale(1);
+
+        /* Animation tùy chỉnh cho countdown */
+        @keyframes countdownFlip {
+            0% {
+                transform: rotateX(0deg) scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: rotateX(90deg) scale(0.8);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: rotateX(0deg) scale(1);
+                opacity: 1;
+            }
         }
-        25% {
-            transform: translateY(-5px) scale(1.05);
+
+        @keyframes countdownBounce {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            25% {
+                transform: translateY(-5px) scale(1.05);
+            }
+
+            50% {
+                transform: translateY(0) scale(1.1);
+            }
+
+            75% {
+                transform: translateY(-3px) scale(1.05);
+            }
         }
-        50% {
-            transform: translateY(0) scale(1.1);
+
+        .countdown-animate {
+            animation: countdownBounce 0.6s ease-out;
         }
-        75% {
-            transform: translateY(-3px) scale(1.05);
+
+        .countdown-container-animate {
+            animation: pulse 0.6s ease-out;
         }
-    }
-    
-    .countdown-animate {
-        animation: countdownBounce 0.6s ease-out;
-    }
-    
-    .countdown-container-animate {
-        animation: pulse 0.6s ease-out;
-    }
-    
-    /* Hiệu ứng glow khi số thay đổi */
-    #countdown-days-container.animate-pulse,
-    #countdown-hours-container.animate-pulse,
-    #countdown-minutes-container.animate-pulse,
-    #countdown-seconds-container.animate-pulse {
-        box-shadow: 0 0 20px rgba(238, 43, 75, 0.3);
-    }
-    
-    /* Audio player controls */
-    #music-toggle.playing {
-        animation: pulse 2s ease-in-out infinite;
-    }
-    
-    #music-volume {
-        -webkit-appearance: none;
-        appearance: none;
-        background: transparent;
-        cursor: pointer;
-    }
-    
-    #music-volume::-webkit-slider-track {
-        background: rgba(238, 43, 75, 0.2);
-        height: 4px;
-        border-radius: 4px;
-    }
-    
-    #music-volume::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        background: #ee2b4b;
-        height: 12px;
-        width: 12px;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    
-    #music-volume::-webkit-slider-thumb:hover {
-        transform: scale(1.2);
-        box-shadow: 0 0 8px rgba(238, 43, 75, 0.5);
-    }
-    
-    #music-volume::-moz-range-track {
-        background: rgba(238, 43, 75, 0.2);
-        height: 4px;
-        border-radius: 4px;
-    }
-    
-    #music-volume::-moz-range-thumb {
-        background: #ee2b4b;
-        height: 12px;
-        width: 12px;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    
-    #music-volume::-moz-range-thumb:hover {
-        transform: scale(1.2);
-        box-shadow: 0 0 8px rgba(238, 43, 75, 0.5);
-    }
-    /* Có thể bổ sung các animation khác cho toàn trang tại đây */
-</style>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+
+        /* Hiệu ứng glow khi số thay đổi */
+        #countdown-days-container.animate-pulse,
+        #countdown-hours-container.animate-pulse,
+        #countdown-minutes-container.animate-pulse,
+        #countdown-seconds-container.animate-pulse {
+            box-shadow: 0 0 20px rgba(238, 43, 75, 0.3);
+        }
+
+        /* Audio player controls */
+        #music-toggle.playing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        #music-volume {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        #music-volume::-webkit-slider-track {
+            background: rgba(238, 43, 75, 0.2);
+            height: 4px;
+            border-radius: 4px;
+        }
+
+        #music-volume::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            background: #ee2b4b;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #music-volume::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 8px rgba(238, 43, 75, 0.5);
+        }
+
+        #music-volume::-moz-range-track {
+            background: rgba(238, 43, 75, 0.2);
+            height: 4px;
+            border-radius: 4px;
+        }
+
+        #music-volume::-moz-range-thumb {
+            background: #ee2b4b;
+            height: 12px;
+            width: 12px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #music-volume::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 8px rgba(238, 43, 75, 0.5);
+        }
+
+        /* Navbar active link */
+        .nav-link.text-primary::after,
+        .nav-link-mobile.text-primary::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ee2b4b;
+            border-radius: 2px;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        /* Mobile menu animation */
+        #mobile-menu {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fixed header styling */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        /* Ensure body has proper spacing for fixed header */
+        body {
+            padding-top: 0;
+        }
+
+        /* Wish card animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Wish list scrollbar styling */
+        #wishes-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #wishes-list::-webkit-scrollbar-track {
+            background: rgba(238, 43, 75, 0.1);
+            border-radius: 10px;
+        }
+
+        #wishes-list::-webkit-scrollbar-thumb {
+            background: rgba(238, 43, 75, 0.3);
+            border-radius: 10px;
+        }
+
+        #wishes-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(238, 43, 75, 0.5);
+        }
+
+        /* Có thể bổ sung các animation khác cho toàn trang tại đây */
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -190,607 +293,1196 @@
         }
     </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-text-main font-display selection:bg-primary selection:text-white page-initial">
-<audio id="background-music" loop>
-<source src="https://res.cloudinary.com/dibhmlbrg/video/upload/v1767608165/baby-happy-birthday-song--happy-birthday-to-you_utruuu.mp3" type="audio/mpeg">
-</audio>
-<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-<header class="sticky top-0 z-50 w-full backdrop-blur-md bg-background-light/80 border-b border-primary/10">
-<div class="max-w-[1200px] mx-auto px-4 sm:px-10 py-4 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="flex items-center justify-center size-10 bg-primary/10 rounded-full text-primary relative">
-<svg class="absolute -top-1 -right-1 w-5 h-5 text-primary drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z" fill="#ee2b4b"></path>
-<path d="M12,2c0,0,1,3,3,3c2,0,3-2,3-2s-1,4-3,4c-2,0-3-3-3-3s-1,3-3,3c-2,0-3-4-3-4s1,2,3,2C11,5,12,2,12,2z" fill="#4ade80"></path>
-</svg>
-<span class="material-symbols-outlined text-2xl">cake</span>
-</div>
-<h2 class="text-text-main text-lg font-bold leading-tight tracking-tight">Dâu Tây's 1st Birthday</h2>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-text-main text-sm font-medium hover:text-primary transition-colors" href="#">Trang chủ</a>
-<a class="text-text-main text-sm font-medium hover:text-primary transition-colors" href="#">Album ảnh</a>
-<a class="text-text-main text-sm font-medium hover:text-primary transition-colors" href="#">Bản đồ</a>
-<a class="text-text-main text-sm font-medium hover:text-primary transition-colors" href="#">Gửi lời chúc</a>
-</nav>
-<div class="flex items-center gap-3">
-<div class="flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-3 py-2 border border-primary/10 shadow-sm">
-<button id="music-toggle" class="flex items-center justify-center size-8 rounded-full bg-primary text-white hover:bg-primary/90 transition-all hover:scale-110" title="Phát/Dừng nhạc">
-<span id="music-icon" class="material-symbols-outlined text-lg">play_arrow</span>
-</button>
-<div class="hidden md:flex items-center gap-2 px-2">
-<input type="range" id="music-volume" min="0" max="100" value="50" class="w-20 h-1 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-primary" title="Điều chỉnh âm lượng">
-<span class="material-symbols-outlined text-primary text-sm">volume_up</span>
-</div>
-</div>
-<button class="flex items-center justify-center rounded-full h-10 px-6 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-105 transition-all duration-300">
-<span class="truncate">RSVP Ngay</span>
-</button>
-</div>
-</div>
-</header>
-<section class="relative w-full py-12 md:py-20 px-4 flex justify-center bg-gradient-to-b from-background-light via-primary-light/30 to-background-light overflow-hidden">
-<div class="absolute top-10 left-10 w-16 h-16 opacity-10 rotate-12 animate-float" style="animation-delay: 0s;">
-<svg fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg"><path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z" fill="#ee2b4b"></path><path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z" fill="#4ade80"></path></svg>
-</div>
-<div class="absolute bottom-20 right-10 w-24 h-24 opacity-10 -rotate-12 animate-float" style="animation-delay: 1.5s;">
-<svg fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg"><path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z" fill="#ee2b4b"></path><path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z" fill="#4ade80"></path></svg>
-</div>
-<div class="max-w-[1000px] w-full flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16 relative z-10">
-<div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-6">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
-<span class="material-symbols-outlined text-sm">celebration</span>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-main font-display selection:bg-primary selection:text-white">
+    <audio id="background-music" loop>
+        <source
+            src="https://res.cloudinary.com/dibhmlbrg/video/upload/v1767608165/baby-happy-birthday-song--happy-birthday-to-you_utruuu.mp3"
+            type="audio/mpeg">
+    </audio>
+    <header
+        class="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md bg-background-light/95 border-b border-primary/10 shadow-sm">
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-10 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="flex items-center justify-center size-10 bg-primary/10 rounded-full text-primary relative">
+                        <svg class="absolute -top-1 -right-1 w-5 h-5 text-primary drop-shadow-sm" fill="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z"
+                                fill="#ee2b4b"></path>
+                            <path
+                                d="M12,2c0,0,1,3,3,3c2,0,3-2,3-2s-1,4-3,4c-2,0-3-3-3-3s-1,3-3,3c-2,0-3-4-3-4s1,2,3,2C11,5,12,2,12,2z"
+                                fill="#4ade80"></path>
+                        </svg>
+                        <span class="material-symbols-outlined text-2xl">cake</span>
+                    </div>
+                    <h2 class="text-text-main text-lg font-bold leading-tight tracking-tight hidden sm:block">Dâu Tây's
+                        1st Birthday</h2>
+                </div>
+                <nav class="hidden lg:flex items-center gap-6">
+                    <a class="nav-link text-text-main text-sm font-medium hover:text-primary transition-colors relative"
+                        href="#home" data-section="home">Trang chủ</a>
+                    <a class="nav-link text-text-main text-sm font-medium hover:text-primary transition-colors relative"
+                        href="#info" data-section="info">Thông tin</a>
+                    <a class="nav-link text-text-main text-sm font-medium hover:text-primary transition-colors relative"
+                        href="#wishes" data-section="wishes">Lời chúc</a>
+                </nav>
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div
+                        class="flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-2 sm:px-3 py-2 border border-primary/10 shadow-sm">
+                        <button id="music-toggle"
+                            class="flex items-center justify-center size-8 rounded-full bg-primary text-white hover:bg-primary/90 transition-all hover:scale-110"
+                            title="Phát/Dừng nhạc">
+                            <span id="music-icon" class="material-symbols-outlined text-lg">play_arrow</span>
+                        </button>
+                        <div class="hidden md:flex items-center gap-2 px-2">
+                            <input type="range" id="music-volume" min="0" max="100" value="50"
+                                class="w-20 h-1 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-primary"
+                                title="Điều chỉnh âm lượng">
+                            <span class="material-symbols-outlined text-primary text-sm">volume_up</span>
+                        </div>
+                    </div>
+                    <button id="rsvp-header-btn"
+                        class="hidden sm:flex items-center justify-center rounded-full h-10 px-6 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-105 transition-all duration-300">
+                        <span class="truncate">RSVP Ngay</span>
+                    </button>
+                    <button id="mobile-menu-toggle"
+                        class="lg:hidden flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-all"
+                        aria-label="Menu">
+                        <span id="mobile-menu-icon" class="material-symbols-outlined text-2xl">menu</span>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4 border-t border-primary/10 pt-4">
+                <nav class="flex flex-col gap-3">
+                    <a class="nav-link-mobile text-text-main text-sm font-medium hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-primary/5"
+                        href="#home" data-section="home">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">home</span>
+                            Trang chủ
+                        </span>
+                    </a>
+                    <a class="nav-link-mobile text-text-main text-sm font-medium hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-primary/5"
+                        href="#info" data-section="info">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">info</span>
+                            Thông tin
+                        </span>
+                    </a>
+                    <a class="nav-link-mobile text-text-main text-sm font-medium hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-primary/5"
+                        href="#wishes" data-section="wishes">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">favorite</span>
+                            Lời chúc
+                        </span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="main-content" class="page-initial relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <section id="home"
+            class="relative w-full pt-24 pb-12 md:pt-28 md:pb-20 px-4 flex justify-center bg-gradient-to-b from-background-light via-primary-light/30 to-background-light overflow-hidden">
+            <div class="absolute top-10 left-10 w-16 h-16 opacity-10 rotate-12 animate-float"
+                style="animation-delay: 0s;">
+                <svg fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z"
+                        fill="#ee2b4b"></path>
+                    <path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z"
+                        fill="#4ade80"></path>
+                </svg>
+            </div>
+            <div class="absolute bottom-20 right-10 w-24 h-24 opacity-10 -rotate-12 animate-float"
+                style="animation-delay: 1.5s;">
+                <svg fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z"
+                        fill="#ee2b4b"></path>
+                    <path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z"
+                        fill="#4ade80"></path>
+                </svg>
+            </div>
+            <div
+                class="max-w-[1000px] w-full flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16 relative z-10">
+                <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-6">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+                        <span class="material-symbols-outlined text-sm">celebration</span>
                         Mời Dự Tiệc Thôi Nôi
                     </div>
-<div class="relative">
-<div class="absolute -top-8 -left-8 md:-left-12 w-14 h-14 md:w-20 md:h-20 -rotate-[20deg] animate-bounce" style="animation-duration: 3s;">
-<svg class="drop-shadow-md" fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-<path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z" fill="#ee2b4b"></path>
-<path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z" fill="#4ade80"></path>
-<circle cx="30" cy="50" fill="white" opacity="0.6" r="3"></circle>
-<circle cx="50" cy="70" fill="white" opacity="0.6" r="3"></circle>
-<circle cx="70" cy="50" fill="white" opacity="0.6" r="3"></circle>
-<circle cx="40" cy="90" fill="white" opacity="0.6" r="3"></circle>
-<circle cx="60" cy="90" fill="white" opacity="0.6" r="3"></circle>
-</svg>
-</div>
-<h1 class="text-text-main text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight relative z-10">
-                            Chào mừng sinh nhật<br/>
-<span class="text-primary inline-block transform hover:scale-105 transition-transform duration-300">Bé Dâu Tây</span> 1 tuổi!
+                    <div class="relative">
+                        <div class="absolute -top-8 -left-8 md:-left-12 w-14 h-14 md:w-20 md:h-20 -rotate-[20deg] animate-bounce"
+                            style="animation-duration: 3s;">
+                            <svg class="drop-shadow-md" fill="none" viewBox="0 0 100 120"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z"
+                                    fill="#ee2b4b"></path>
+                                <path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z"
+                                    fill="#4ade80"></path>
+                                <circle cx="30" cy="50" fill="white" opacity="0.6" r="3"></circle>
+                                <circle cx="50" cy="70" fill="white" opacity="0.6" r="3"></circle>
+                                <circle cx="70" cy="50" fill="white" opacity="0.6" r="3"></circle>
+                                <circle cx="40" cy="90" fill="white" opacity="0.6" r="3"></circle>
+                                <circle cx="60" cy="90" fill="white" opacity="0.6" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h1
+                            class="text-text-main text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight relative z-10">
+                            Chào mừng sinh nhật<br />
+                            <span
+                                class="text-primary inline-block transform hover:scale-105 transition-transform duration-300">Bé
+                                Dâu Tây</span> 1 tuổi!
                         </h1>
-<div class="absolute -bottom-2 -right-6 md:-right-10 w-12 h-12 md:w-16 md:h-16 rotate-[15deg] animate-pulse">
-<svg class="drop-shadow-md" fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-<path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z" fill="#ee2b4b"></path>
-<path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z" fill="#4ade80"></path>
-<circle cx="35" cy="45" fill="white" opacity="0.6" r="3"></circle>
-<circle cx="65" cy="45" fill="white" opacity="0.6" r="3"></circle>
-<circle cx="50" cy="75" fill="white" opacity="0.6" r="3"></circle>
-</svg>
-</div>
-</div>
-<p class="text-text-muted text-base md:text-lg font-normal leading-relaxed max-w-lg">
-                        Gia đình rất vui mừng chào đón các cô chú, anh chị đến chung vui cùng bé Dâu Tây trong buổi tiệc thôi nôi ấm cúng và đầy ý nghĩa này.
+                        <div
+                            class="absolute -bottom-2 -right-6 md:-right-10 w-12 h-12 md:w-16 md:h-16 rotate-[15deg] animate-pulse">
+                            <svg class="drop-shadow-md" fill="none" viewBox="0 0 100 120"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z"
+                                    fill="#ee2b4b"></path>
+                                <path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z"
+                                    fill="#4ade80"></path>
+                                <circle cx="35" cy="45" fill="white" opacity="0.6" r="3"></circle>
+                                <circle cx="65" cy="45" fill="white" opacity="0.6" r="3"></circle>
+                                <circle cx="50" cy="75" fill="white" opacity="0.6" r="3"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-text-muted text-base md:text-lg font-normal leading-relaxed max-w-lg">
+                        Gia đình rất vui mừng chào đón các cô chú, anh chị đến chung vui cùng bé Dâu Tây trong buổi tiệc
+                        thôi nôi ấm cúng và đầy ý nghĩa này.
                     </p>
-<div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-<button class="flex items-center justify-center rounded-full h-12 px-8 bg-primary text-white text-base font-bold shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all">
+                    <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                        <button
+                            class="flex items-center justify-center rounded-full h-12 px-8 bg-primary text-white text-base font-bold shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all">
                             Xác nhận tham dự
                         </button>
-<button class="flex items-center justify-center rounded-full h-12 px-8 bg-white border border-primary/20 text-primary text-base font-bold hover:bg-primary-light transition-all">
+                        <button
+                            class="flex items-center justify-center rounded-full h-12 px-8 bg-white border border-primary/20 text-primary text-base font-bold hover:bg-primary-light transition-all">
                             Xem album ảnh
                         </button>
-</div>
-</div>
-<div class="w-full md:w-1/2 flex justify-center">
-<div class="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]">
-<div class="absolute inset-0 bg-primary/10 rounded-full scale-110 animate-pulse"></div>
-<div class="absolute -right-4 top-10 size-16 bg-white rounded-full flex items-center justify-center shadow-lg z-10 animate-bounce" style="animation-duration: 3s;">
-<span class="material-symbols-outlined text-4xl text-primary">favorite</span>
-</div>
-<div class="absolute -left-2 bottom-10 size-12 z-10 animate-spin-slow" style="animation: spin 10s linear infinite;">
-<svg class="text-primary-light drop-shadow-md w-full h-full" fill="currentColor" viewBox="0 0 24 24">
-<path d="M12 2C13.1 2 14 2.9 14 4V7.17C15.65 6.6 17.41 7.42 17.98 9.07L18.96 11.91C18.27 11.83 17.56 11.95 16.92 12.31C18.67 13.06 19.38 15.11 18.63 16.86L17.65 19.14C17.08 20.47 15.56 21.13 14.23 20.56L12 19.6L9.77 20.56C8.44 21.13 6.92 20.47 6.35 19.14L5.37 16.86C4.62 15.11 5.33 13.06 7.08 12.31C6.44 11.95 5.73 11.83 5.04 11.91L6.02 9.07C6.59 7.42 8.35 6.6 10 7.17V4C10 2.9 10.9 2 12 2Z" fill="#ff9eb5"></path>
-<circle cx="12" cy="12" fill="#fff5f7" r="3"></circle>
-</svg>
-</div>
-<div class="w-full h-full rounded-full overflow-hidden border-[8px] border-white shadow-2xl bg-cover bg-center relative z-0" data-alt="Cute baby girl smiling wearing a pink dress with strawberry patterns" style='background-image: url("images/baby.png");'>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="py-10 px-4 bg-background-light">
-<div class="max-w-[800px] mx-auto">
-<div class="text-center mb-8 relative">
-<p class="text-text-muted font-medium mb-2">Đếm ngược đến giờ G</p>
-<h3 class="text-2xl font-bold text-text-main">Cùng chờ đón khoảnh khắc nhé!</h3>
-<div class="absolute -top-4 right-[20%] w-8 h-8 opacity-60 rotate-12 hidden md:block">
-<svg fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg"><path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z" fill="#ee2b4b"></path><path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z" fill="#4ade80"></path></svg>
-</div>
-</div>
-<div class="grid grid-cols-4 gap-3 md:gap-6">
-            <div class="flex flex-col items-center gap-3">
-                <div id="countdown-days-container" class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
-                    <div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
                     </div>
-                    <p id="countdown-days" class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00</p>
                 </div>
-                <p class="text-text-muted text-sm font-medium">Ngày</p>
-            </div>
-            <div class="flex flex-col items-center gap-3">
-                <div id="countdown-hours-container" class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
-                    <div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]">
+                        <div class="absolute inset-0 bg-primary/10 rounded-full scale-110 animate-pulse"></div>
+                        <div class="absolute -right-4 top-10 size-16 bg-white rounded-full flex items-center justify-center shadow-lg z-10 animate-bounce"
+                            style="animation-duration: 3s;">
+                            <span class="material-symbols-outlined text-4xl text-primary">favorite</span>
+                        </div>
+                        <div class="absolute -left-2 bottom-10 size-12 z-10 animate-spin-slow"
+                            style="animation: spin 10s linear infinite;">
+                            <svg class="text-primary-light drop-shadow-md w-full h-full" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C13.1 2 14 2.9 14 4V7.17C15.65 6.6 17.41 7.42 17.98 9.07L18.96 11.91C18.27 11.83 17.56 11.95 16.92 12.31C18.67 13.06 19.38 15.11 18.63 16.86L17.65 19.14C17.08 20.47 15.56 21.13 14.23 20.56L12 19.6L9.77 20.56C8.44 21.13 6.92 20.47 6.35 19.14L5.37 16.86C4.62 15.11 5.33 13.06 7.08 12.31C6.44 11.95 5.73 11.83 5.04 11.91L6.02 9.07C6.59 7.42 8.35 6.6 10 7.17V4C10 2.9 10.9 2 12 2Z"
+                                    fill="#ff9eb5"></path>
+                                <circle cx="12" cy="12" fill="#fff5f7" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="w-full h-full rounded-full overflow-hidden border-[8px] border-white shadow-2xl bg-cover bg-center relative z-0"
+                            data-alt="Cute baby girl smiling wearing a pink dress with strawberry patterns"
+                            style='background-image: url("images/baby.png");'>
+                        </div>
                     </div>
-                    <p id="countdown-hours" class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00</p>
                 </div>
-                <p class="text-text-muted text-sm font-medium">Giờ</p>
             </div>
-            <div class="flex flex-col items-center gap-3">
-                <div id="countdown-minutes-container" class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
-                    <div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
+        </section>
+        <section id="countdown" class="py-10 px-4 bg-background-light">
+            <div class="max-w-[800px] mx-auto">
+                <div class="text-center mb-8 relative">
+                    <p class="text-text-muted font-medium mb-2">Đếm ngược đến giờ G</p>
+                    <h3 class="text-2xl font-bold text-text-main">Cùng chờ đón khoảnh khắc nhé!</h3>
+                    <div class="absolute -top-4 right-[20%] w-8 h-8 opacity-60 rotate-12 hidden md:block">
+                        <svg fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z"
+                                fill="#ee2b4b"></path>
+                            <path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z"
+                                fill="#4ade80"></path>
+                        </svg>
                     </div>
-                    <p id="countdown-minutes" class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00</p>
                 </div>
-                <p class="text-text-muted text-sm font-medium">Phút</p>
-            </div>
-            <div class="flex flex-col items-center gap-3">
-                <div id="countdown-seconds-container" class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
-                    <div class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
-                        <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ee2b4b"></path></svg>
+                <div class="grid grid-cols-4 gap-3 md:gap-6">
+                    <div class="flex flex-col items-center gap-3">
+                        <div id="countdown-days-container"
+                            class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
+                            <div
+                                class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
+                                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                        fill="#ee2b4b"></path>
+                                </svg>
+                            </div>
+                            <p id="countdown-days"
+                                class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00
+                            </p>
+                        </div>
+                        <p class="text-text-muted text-sm font-medium">Ngày</p>
                     </div>
-                    <p id="countdown-seconds" class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00</p>
+                    <div class="flex flex-col items-center gap-3">
+                        <div id="countdown-hours-container"
+                            class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
+                            <div
+                                class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
+                                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                        fill="#ee2b4b"></path>
+                                </svg>
+                            </div>
+                            <p id="countdown-hours"
+                                class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00
+                            </p>
+                        </div>
+                        <p class="text-text-muted text-sm font-medium">Giờ</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-3">
+                        <div id="countdown-minutes-container"
+                            class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
+                            <div
+                                class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
+                                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                        fill="#ee2b4b"></path>
+                                </svg>
+                            </div>
+                            <p id="countdown-minutes"
+                                class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00
+                            </p>
+                        </div>
+                        <p class="text-text-muted text-sm font-medium">Phút</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-3">
+                        <div id="countdown-seconds-container"
+                            class="flex w-full aspect-square items-center justify-center rounded-2xl bg-white border border-primary/10 shadow-sm relative overflow-hidden group transition-all duration-300">
+                            <div
+                                class="absolute -bottom-2 -right-2 w-8 h-8 opacity-20 rotate-12 group-hover:scale-110 transition-transform">
+                                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                        fill="#ee2b4b"></path>
+                                </svg>
+                            </div>
+                            <p id="countdown-seconds"
+                                class="text-primary text-3xl md:text-4xl font-black z-10 transition-all duration-300">00
+                            </p>
+                        </div>
+                        <p class="text-text-muted text-sm font-medium">Giây</p>
+                    </div>
                 </div>
-                <p class="text-text-muted text-sm font-medium">Giây</p>
             </div>
-</div>
-</div>
-</section>
-<section class="py-16 px-4 bg-white rounded-[3rem] mx-4 md:mx-10 my-10 shadow-sm border border-primary/5 relative overflow-hidden">
-<div class="absolute top-0 right-0 w-32 h-32 opacity-[0.03] rotate-45 pointer-events-none">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z" fill="#ee2b4b"></path></svg>
-</div>
-<div class="absolute bottom-0 left-0 w-40 h-40 opacity-[0.03] -rotate-12 pointer-events-none">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z" fill="#ee2b4b"></path></svg>
-</div>
-<div class="max-w-[960px] mx-auto flex flex-col md:flex-row gap-12 items-center relative z-10">
-<div class="flex-1 space-y-6 text-center md:text-left">
-<h2 class="text-primary text-sm font-bold tracking-widest uppercase mb-2">Thông Tin Quan Trọng</h2>
-<div class="relative inline-block">
-<h2 class="text-text-main text-3xl md:text-4xl font-black leading-tight relative z-10">
-                        Thời Gian &amp; Địa Điểm<br/>Tổ Chức Tiệc
-                    </h2>
-<div class="absolute -top-6 -right-6 w-10 h-10 rotate-12 animate-float">
-<svg class="drop-shadow-sm" fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-<path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z" fill="#ee2b4b"></path>
-<path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z" fill="#4ade80"></path>
-<circle cx="35" cy="45" fill="white" opacity="0.6" r="4"></circle>
-<circle cx="65" cy="45" fill="white" opacity="0.6" r="4"></circle>
-<circle cx="50" cy="75" fill="white" opacity="0.6" r="4"></circle>
-</svg>
-</div>
-</div>
-<p class="text-text-muted text-lg leading-relaxed">
-                        Bữa tiệc sẽ được tổ chức ấm cúng với sự tham gia của những người thân yêu nhất. Dưới đây là thông tin chi tiết để mọi người tiện sắp xếp ạ.
+        </section>
+        <section id="info"
+            class="py-16 px-4 bg-white rounded-[3rem] mx-4 md:mx-10 my-10 shadow-sm border border-primary/5 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 opacity-[0.03] rotate-45 pointer-events-none">
+                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z"
+                        fill="#ee2b4b"></path>
+                </svg>
+            </div>
+            <div class="absolute bottom-0 left-0 w-40 h-40 opacity-[0.03] -rotate-12 pointer-events-none">
+                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z"
+                        fill="#ee2b4b"></path>
+                </svg>
+            </div>
+            <div class="max-w-[960px] mx-auto flex flex-col md:flex-row gap-12 items-center relative z-10">
+                <div class="flex-1 space-y-6 text-center md:text-left">
+                    <h2 class="text-primary text-sm font-bold tracking-widest uppercase mb-2">Thông Tin Quan Trọng</h2>
+                    <div class="relative inline-block">
+                        <h2 class="text-text-main text-3xl md:text-4xl font-black leading-tight relative z-10">
+                            Thời Gian &amp; Địa Điểm<br />Tổ Chức Tiệc
+                        </h2>
+                        <div class="absolute -top-6 -right-6 w-10 h-10 rotate-12 animate-float">
+                            <svg class="drop-shadow-sm" fill="none" viewBox="0 0 100 120"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z"
+                                    fill="#ee2b4b"></path>
+                                <path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z"
+                                    fill="#4ade80"></path>
+                                <circle cx="35" cy="45" fill="white" opacity="0.6" r="4"></circle>
+                                <circle cx="65" cy="45" fill="white" opacity="0.6" r="4"></circle>
+                                <circle cx="50" cy="75" fill="white" opacity="0.6" r="4"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-text-muted text-lg leading-relaxed">
+                        Bữa tiệc sẽ được tổ chức ấm cúng với sự tham gia của những người thân yêu nhất. Dưới đây là
+                        thông tin chi tiết để mọi người tiện sắp xếp ạ.
                     </p>
-<div class="h-px w-20 bg-primary/20 mx-auto md:mx-0"></div>
-</div>
-<div class="flex-1 w-full grid gap-4">
-<div class="flex items-center gap-5 p-6 rounded-2xl bg-background-light border border-primary/10 hover:border-primary/30 transition-colors group relative overflow-hidden">
-<div class="absolute -top-3 -right-3 w-16 h-16 opacity-10 rotate-[25deg] group-hover:scale-110 group-hover:opacity-20 transition-all duration-500">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z" fill="#ee2b4b"></path><path d="M12,2c0,0,1,3,3,3c2,0,3-2,3-2s-1,4-3,4c-2,0-3-3-3-3s-1,3-3,3c-2,0-3-4-3-4s1,2,3,2C11,5,12,2,12,2z" fill="#4ade80"></path></svg>
-</div>
-<div class="size-14 rounded-full bg-white flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform relative z-10">
-<span class="material-symbols-outlined text-3xl">schedule</span>
-</div>
-<div class="relative z-10">
-<h3 class="text-text-main text-lg font-bold">Thời Gian</h3>
-<p class="text-primary font-semibold text-lg">18:00 - Thứ Bảy</p>
-<p class="text-text-muted text-sm">Ngày 24 tháng 01 năm 2026</p>
-</div>
-</div>
-<div class="flex items-center gap-5 p-6 rounded-2xl bg-background-light border border-primary/10 hover:border-primary/30 transition-colors group relative overflow-hidden">
-<div class="absolute -top-3 -right-3 w-16 h-16 opacity-10 rotate-[25deg] group-hover:scale-110 group-hover:opacity-20 transition-all duration-500">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z" fill="#ee2b4b"></path><path d="M12,2c0,0,1,3,3,3c2,0,3-2,3-2s-1,4-3,4c-2,0-3-3-3-3s-1,3-3,3c-2,0-3-4-3-4s1,2,3,2C11,5,12,2,12,2z" fill="#4ade80"></path></svg>
-</div>
-<div class="size-14 rounded-full bg-white flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform relative z-10">
-<span class="material-symbols-outlined text-3xl">location_on</span>
-</div>
-<div class="relative z-10">
-<h3 class="text-text-main text-lg font-bold">Địa Điểm</h3>
-<p class="text-text-main font-semibold text-base">Trung tâm tổ chức sự kiện Đại Việt</p>
-<p class="text-text-muted text-sm">Thành phố Thanh Hóa</p>
-</div>
-</div>
+                    <div class="h-px w-20 bg-primary/20 mx-auto md:mx-0"></div>
+                </div>
+                <div class="flex-1 w-full grid gap-4">
+                    <div
+                        class="flex items-center gap-5 p-6 rounded-2xl bg-background-light border border-primary/10 hover:border-primary/30 transition-colors group relative overflow-hidden">
+                        <div
+                            class="absolute -top-3 -right-3 w-16 h-16 opacity-10 rotate-[25deg] group-hover:scale-110 group-hover:opacity-20 transition-all duration-500">
+                            <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z"
+                                    fill="#ee2b4b"></path>
+                                <path
+                                    d="M12,2c0,0,1,3,3,3c2,0,3-2,3-2s-1,4-3,4c-2,0-3-3-3-3s-1,3-3,3c-2,0-3-4-3-4s1,2,3,2C11,5,12,2,12,2z"
+                                    fill="#4ade80"></path>
+                            </svg>
+                        </div>
+                        <div
+                            class="size-14 rounded-full bg-white flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform relative z-10">
+                            <span class="material-symbols-outlined text-3xl">schedule</span>
+                        </div>
+                        <div class="relative z-10">
+                            <h3 class="text-text-main text-lg font-bold">Thời Gian</h3>
+                            <p class="text-primary font-semibold text-lg">18:00 - Thứ Bảy</p>
+                            <p class="text-text-muted text-sm">Ngày 24 tháng 01 năm 2026</p>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-5 p-6 rounded-2xl bg-background-light border border-primary/10 hover:border-primary/30 transition-colors group relative overflow-hidden">
+                        <div
+                            class="absolute -top-3 -right-3 w-16 h-16 opacity-10 rotate-[25deg] group-hover:scale-110 group-hover:opacity-20 transition-all duration-500">
+                            <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z"
+                                    fill="#ee2b4b"></path>
+                                <path
+                                    d="M12,2c0,0,1,3,3,3c2,0,3-2,3-2s-1,4-3,4c-2,0-3-3-3-3s-1,3-3,3c-2,0-3-4-3-4s1,2,3,2C11,5,12,2,12,2z"
+                                    fill="#4ade80"></path>
+                            </svg>
+                        </div>
+                        <div
+                            class="size-14 rounded-full bg-white flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform relative z-10">
+                            <span class="material-symbols-outlined text-3xl">location_on</span>
+                        </div>
+                        <div class="relative z-10">
+                            <h3 class="text-text-main text-lg font-bold">Địa Điểm</h3>
+                            <p class="text-text-main font-semibold text-base">Trung tâm tổ chức sự kiện Đại Việt</p>
+                            <p class="text-text-muted text-sm">Thành phố Thanh Hóa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="info" class="py-10 px-4 md:px-10 pb-20">
+            <div class="max-w-[1200px] mx-auto flex flex-col h-full gap-6">
+                <div class="flex flex-col items-center gap-2 mb-4 relative">
+                    <div class="absolute -left-6 top-1 w-6 h-6 rotate-[-15deg] hidden sm:block animate-pulse">
+                        <svg fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z"
+                                fill="#ee2b4b"></path>
+                            <path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z"
+                                fill="#4ade80"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-text-main">Bản Đồ Đến Tiệc</h2>
+                    <p class="text-text-muted">Dễ dàng tìm đường đến chung vui cùng gia đình</p>
+                </div>
+                <div
+                    class="relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-lg border border-primary/10">
+                    <div class="absolute inset-0">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5454.630069965481!2d105.76780887655686!3d19.80929493155215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3136f99524d9d769%3A0x2e2afcfb3c5dee25!2sDai%20Viet%20Palace%20-%20Wedding%20%26%20Convention!5e1!3m2!1svi!2s!4v1767606479970!5m2!1svi!2s"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="absolute inset-0 p-4 md:p-6 flex flex-col justify-between pointer-events-none">
+                        <div
+                            class="w-full max-w-md pointer-events-auto bg-white/95 backdrop-blur rounded-xl shadow-lg p-2 flex items-center gap-2">
+                            <div class="size-10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">search</span>
+                            </div>
+                            <input
+                                class="flex-1 bg-transparent border-none text-text-main placeholder-text-muted focus:ring-0 text-sm font-medium"
+                                readonly="" type="text" value="Trung tâm tổ chức sự kiện Đại Việt" />
+                            <button class="bg-primary hover:bg-primary/90 text-white rounded-lg p-2 transition-colors">
+                                <span class="material-symbols-outlined text-xl">directions</span>
+                            </button>
+                        </div>
+                        <div class="flex justify-end pointer-events-auto">
+                            <div class="flex flex-col gap-2">
+                                <button
+                                    class="size-10 bg-white hover:bg-gray-50 text-text-main rounded-full shadow-lg flex items-center justify-center transition-colors">
+                                    <span class="material-symbols-outlined">add</span>
+                                </button>
+                                <button
+                                    class="size-10 bg-white hover:bg-gray-50 text-text-main rounded-full shadow-lg flex items-center justify-center transition-colors">
+                                    <span class="material-symbols-outlined">remove</span>
+                                </button>
+                                <button
+                                    class="size-10 bg-primary text-white rounded-full shadow-lg flex items-center justify-center mt-2 hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined">my_location</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="rsvp"
+            class="py-16 px-4 bg-white rounded-[3rem] mx-4 md:mx-10 my-10 shadow-sm border border-primary/5 relative overflow-hidden reveal-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 opacity-[0.03] rotate-45 pointer-events-none">
+                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z"
+                        fill="#ee2b4b"></path>
+                </svg>
+            </div>
+            <div class="absolute bottom-0 left-0 w-40 h-40 opacity-[0.03] -rotate-12 pointer-events-none">
+                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z"
+                        fill="#ee2b4b"></path>
+                </svg>
+            </div>
+            <div class="max-w-[800px] mx-auto relative z-10">
+                <div class="text-center mb-8">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+                        <span class="material-symbols-outlined text-sm">edit</span>
+                        Đăng Ký Tham Dự
+                    </div>
+                    <div class="relative inline-block mb-4">
+                        <h2 class="text-text-main text-3xl md:text-4xl font-black leading-tight relative z-10">
+                            Xác Nhận Tham Dự Tiệc
+                        </h2>
+                        <div class="absolute -top-6 -right-6 w-10 h-10 rotate-12 animate-float">
+                            <svg class="drop-shadow-sm" fill="none" viewBox="0 0 100 120"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z"
+                                    fill="#ee2b4b"></path>
+                                <path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z"
+                                    fill="#4ade80"></path>
+                                <circle cx="35" cy="45" fill="white" opacity="0.6" r="4"></circle>
+                                <circle cx="65" cy="45" fill="white" opacity="0.6" r="4"></circle>
+                                <circle cx="50" cy="75" fill="white" opacity="0.6" r="4"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-text-muted text-lg leading-relaxed">
+                        Vui lòng điền thông tin để gia đình có thể chuẩn bị tốt nhất cho buổi tiệc
+                    </p>
+                </div>
+                <form id="rsvp-form" class="space-y-6">
+                    <div class="space-y-2">
+                        <label for="fullname" class="block text-text-main text-sm font-semibold">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-lg">person</span>
+                                Họ và Tên <span class="text-primary">*</span>
+                            </span>
+                        </label>
+                        <input type="text" id="fullname" name="fullname" required
+                            class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                            placeholder="Nhập họ và tên của bạn" />
+                    </div>
+                    <div class="space-y-2">
+                        <label for="phone" class="block text-text-main text-sm font-semibold">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-lg">phone</span>
+                                Số Điện Thoại <span class="text-primary">*</span>
+                            </span>
+                        </label>
+                        <input type="tel" id="phone" name="phone" required
+                            class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                            placeholder="Nhập số điện thoại của bạn" />
+                    </div>
+                    <div class="pt-4">
+                        <button type="submit"
+                            class="w-full flex items-center justify-center gap-2 rounded-full h-14 px-8 bg-primary text-white text-base font-bold shadow-xl shadow-primary/20 hover:bg-primary/90 hover:shadow-primary/30 transition-all duration-300 transform hover:scale-[1.02]">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Gửi Xác Nhận Tham Dự
+                        </button>
+                    </div>
+                    <div id="form-message" class="hidden mt-4 p-4 rounded-xl text-sm font-medium text-center"></div>
+                </form>
+            </div>
+        </section>
+        <section id="wishes" class="py-16 px-4 bg-background-light relative overflow-hidden reveal-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 opacity-[0.03] rotate-45 pointer-events-none">
+                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z"
+                        fill="#ee2b4b"></path>
+                </svg>
+            </div>
+            <div class="absolute bottom-0 left-0 w-40 h-40 opacity-[0.03] -rotate-12 pointer-events-none">
+                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z"
+                        fill="#ee2b4b"></path>
+                </svg>
+            </div>
+            <div class="max-w-[1200px] mx-auto relative z-10">
+                <div class="text-center mb-12">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+                        <span class="material-symbols-outlined text-sm">favorite</span>
+                        Lời Chúc Mừng
+                    </div>
+                    <div class="relative inline-block mb-4">
+                        <h2 class="text-text-main text-3xl md:text-4xl font-black leading-tight relative z-10">
+                            Gửi Lời Chúc Đến Bé Dâu Tây
+                        </h2>
+                        <div class="absolute -top-6 -right-6 w-10 h-10 rotate-12 animate-float">
+                            <svg class="drop-shadow-sm" fill="none" viewBox="0 0 100 120"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z"
+                                    fill="#ee2b4b"></path>
+                                <path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z"
+                                    fill="#4ade80"></path>
+                                <circle cx="35" cy="45" fill="white" opacity="0.6" r="4"></circle>
+                                <circle cx="65" cy="45" fill="white" opacity="0.6" r="4"></circle>
+                                <circle cx="50" cy="75" fill="white" opacity="0.6" r="4"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-text-muted text-lg leading-relaxed max-w-2xl mx-auto">
+                        Chia sẻ những lời chúc tốt đẹp nhất đến bé Dâu Tây trong ngày sinh nhật đặc biệt này
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-primary/5">
+                        <h3 class="text-text-main text-xl font-bold mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">edit</span>
+                            Viết Lời Chúc
+                        </h3>
+                        <form id="wish-form" class="space-y-5">
+                            <div class="space-y-2">
+                                <label for="wish-name" class="block text-text-main text-sm font-semibold">
+                                    <span class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-primary text-lg">person</span>
+                                        Tên của bạn <span class="text-primary">*</span>
+                                    </span>
+                                </label>
+                                <input type="text" id="wish-name" name="wish-name" required
+                                    class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                                    placeholder="Nhập tên của bạn" />
+                            </div>
+                            <div class="space-y-2">
+                                <label for="wish-message" class="block text-text-main text-sm font-semibold">
+                                    <span class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-primary text-lg">chat_bubble</span>
+                                        Lời chúc <span class="text-primary">*</span>
+                                    </span>
+                                </label>
+                                <textarea id="wish-message" name="wish-message" rows="5" required
+                                    class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"
+                                    placeholder="Viết lời chúc của bạn ở đây..."></textarea>
+                                <p class="text-text-muted text-xs">Tối đa 500 ký tự</p>
+                            </div>
+                            <button type="submit"
+                                class="w-full flex items-center justify-center gap-2 rounded-full h-12 px-8 bg-primary text-white text-base font-bold shadow-xl shadow-primary/20 hover:bg-primary/90 hover:shadow-primary/30 transition-all duration-300 transform hover:scale-[1.02]">
+                                <span class="material-symbols-outlined">send</span>
+                                Gửi Lời Chúc
+                            </button>
+                            <div id="wish-form-message"
+                                class="hidden mt-4 p-4 rounded-xl text-sm font-medium text-center"></div>
+                        </form>
+                    </div>
+                    <div class="bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-primary/5">
+                        <h3 class="text-text-main text-xl font-bold mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">favorite</span>
+                            Lời Chúc Đã Gửi
+                            <span id="wish-count" class="ml-auto text-primary text-base font-normal">(0)</span>
+                        </h3>
+                        <div id="wishes-list" class="space-y-4 max-h-[500px] overflow-y-auto pr-2">
+                            <div class="text-center py-12 text-text-muted">
+                                <span class="material-symbols-outlined text-4xl mb-2 opacity-50">favorite</span>
+                                <p class="text-sm">Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc nhé!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="bg-white border-t border-primary/10 py-8">
+            <div class="max-w-[1200px] mx-auto px-10 text-center flex flex-col items-center gap-4">
+                <div
+                    class="flex items-center justify-center size-12 bg-primary/5 rounded-full text-primary mb-2 relative">
+                    <span class="material-symbols-outlined text-3xl">child_care</span>
+                    <svg class="absolute -top-2 -right-2 w-6 h-6 rotate-12" fill="none" viewBox="0 0 100 120"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z"
+                            fill="#ee2b4b"></path>
+                        <path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z"
+                            fill="#4ade80"></path>
+                    </svg>
+                </div>
+                <p class="text-text-main font-bold text-lg">Gia đình Bé Dâu Tây</p>
+                <p class="text-text-muted text-sm max-w-md">Cảm ơn các cô chú, anh chị đã dành thời gian quan tâm và đến
+                    dự tiệc. Sự hiện diện của mọi người là niềm hạnh phúc lớn lao của gia đình.</p>
+                <p class="text-text-muted/50 text-xs mt-4">Designed with ❤️ for Dâu Tây's 1st Birthday</p>
+            </div>
+        </footer>
     </div>
-</div>
-</section>
-<section class="py-16 px-4 bg-white rounded-[3rem] mx-4 md:mx-10 my-10 shadow-sm border border-primary/5 relative overflow-hidden reveal-hidden">
-<div class="absolute top-0 right-0 w-32 h-32 opacity-[0.03] rotate-45 pointer-events-none">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z" fill="#ee2b4b"></path></svg>
-</div>
-<div class="absolute bottom-0 left-0 w-40 h-40 opacity-[0.03] -rotate-12 pointer-events-none">
-<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.5,5.5c-1.5-1.5-3.5-1.5-3.5-1.5S14,2,12,2S9,4,9,4S7,4,5.5,5.5C4,7,4,10,4,10c0,5,5,10,8,12c3-2,8-7,8-12C20,10,20,7,18.5,5.5z" fill="#ee2b4b"></path></svg>
-</div>
-<div class="max-w-[800px] mx-auto relative z-10">
-<div class="text-center mb-8">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
-<span class="material-symbols-outlined text-sm">edit</span>
-Đăng Ký Tham Dự
-</div>
-<div class="relative inline-block mb-4">
-<h2 class="text-text-main text-3xl md:text-4xl font-black leading-tight relative z-10">
-Xác Nhận Tham Dự Tiệc
-</h2>
-<div class="absolute -top-6 -right-6 w-10 h-10 rotate-12 animate-float">
-<svg class="drop-shadow-sm" fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-<path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z" fill="#ee2b4b"></path>
-<path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z" fill="#4ade80"></path>
-<circle cx="35" cy="45" fill="white" opacity="0.6" r="4"></circle>
-<circle cx="65" cy="45" fill="white" opacity="0.6" r="4"></circle>
-<circle cx="50" cy="75" fill="white" opacity="0.6" r="4"></circle>
-</svg>
-</div>
-</div>
-<p class="text-text-muted text-lg leading-relaxed">
-Vui lòng điền thông tin để gia đình có thể chuẩn bị tốt nhất cho buổi tiệc
-</p>
-</div>
-<form id="rsvp-form" class="space-y-6">
-<div class="space-y-2">
-<label for="fullname" class="block text-text-main text-sm font-semibold">
-<span class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-lg">person</span>
-Họ và Tên <span class="text-primary">*</span>
-</span>
-</label>
-<input type="text" id="fullname" name="fullname" required class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all" placeholder="Nhập họ và tên của bạn"/>
-</div>
-<div class="space-y-2">
-<label for="phone" class="block text-text-main text-sm font-semibold">
-<span class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-lg">phone</span>
-Số Điện Thoại <span class="text-primary">*</span>
-</span>
-</label>
-<input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-xl border border-primary/20 bg-background-light text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all" placeholder="Nhập số điện thoại của bạn"/>
-</div>
-<div class="pt-4">
-<button type="submit" class="w-full flex items-center justify-center gap-2 rounded-full h-14 px-8 bg-primary text-white text-base font-bold shadow-xl shadow-primary/20 hover:bg-primary/90 hover:shadow-primary/30 transition-all duration-300 transform hover:scale-[1.02]">
-<span class="material-symbols-outlined">check_circle</span>
-Gửi Xác Nhận Tham Dự
-</button>
-</div>
-<div id="form-message" class="hidden mt-4 p-4 rounded-xl text-sm font-medium text-center"></div>
-</form>
-</div>
-</section>
-<section class="py-10 px-4 md:px-10 pb-20">
-<div class="max-w-[1200px] mx-auto flex flex-col h-full gap-6">
-<div class="flex flex-col items-center gap-2 mb-4 relative">
-<div class="absolute -left-6 top-1 w-6 h-6 rotate-[-15deg] hidden sm:block animate-pulse">
-<svg fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg"><path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z" fill="#ee2b4b"></path><path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z" fill="#4ade80"></path></svg>
-</div>
-<h2 class="text-2xl md:text-3xl font-bold text-text-main">Bản Đồ Đến Tiệc</h2>
-<p class="text-text-muted">Dễ dàng tìm đường đến chung vui cùng gia đình</p>
-</div>
-<div class="relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-lg border border-primary/10">
-<div class="absolute inset-0">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5454.630069965481!2d105.76780887655686!3d19.80929493155215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3136f99524d9d769%3A0x2e2afcfb3c5dee25!2sDai%20Viet%20Palace%20-%20Wedding%20%26%20Convention!5e1!3m2!1svi!2s!4v1767606479970!5m2!1svi!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
-<div class="absolute inset-0 p-4 md:p-6 flex flex-col justify-between pointer-events-none">
-<div class="w-full max-w-md pointer-events-auto bg-white/95 backdrop-blur rounded-xl shadow-lg p-2 flex items-center gap-2">
-<div class="size-10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined">search</span>
-</div>
-<input class="flex-1 bg-transparent border-none text-text-main placeholder-text-muted focus:ring-0 text-sm font-medium" readonly="" type="text" value="Trung tâm tổ chức sự kiện Đại Việt"/>
-<button class="bg-primary hover:bg-primary/90 text-white rounded-lg p-2 transition-colors">
-<span class="material-symbols-outlined text-xl">directions</span>
-</button>
-</div>
-<div class="flex justify-end pointer-events-auto">
-<div class="flex flex-col gap-2">
-<button class="size-10 bg-white hover:bg-gray-50 text-text-main rounded-full shadow-lg flex items-center justify-center transition-colors">
-<span class="material-symbols-outlined">add</span>
-</button>
-<button class="size-10 bg-white hover:bg-gray-50 text-text-main rounded-full shadow-lg flex items-center justify-center transition-colors">
-<span class="material-symbols-outlined">remove</span>
-</button>
-<button class="size-10 bg-primary text-white rounded-full shadow-lg flex items-center justify-center mt-2 hover:bg-primary/90 transition-colors">
-<span class="material-symbols-outlined">my_location</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<footer class="bg-white border-t border-primary/10 py-8">
-<div class="max-w-[1200px] mx-auto px-10 text-center flex flex-col items-center gap-4">
-<div class="flex items-center justify-center size-12 bg-primary/5 rounded-full text-primary mb-2 relative">
-<span class="material-symbols-outlined text-3xl">child_care</span>
-<svg class="absolute -top-2 -right-2 w-6 h-6 rotate-12" fill="none" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg"><path d="M50 115C25 115 5 80 5 50C5 25 25 15 50 15C75 15 95 25 95 50C95 80 75 115 50 115Z" fill="#ee2b4b"></path><path d="M50 15C45 5 35 15 25 10C35 25 45 20 50 25C55 20 65 25 75 10C65 15 55 5 50 15Z" fill="#4ade80"></path></svg>
-</div>
-<p class="text-text-main font-bold text-lg">Gia đình Bé Dâu Tây</p>
-<p class="text-text-muted text-sm max-w-md">Cảm ơn các cô chú, anh chị đã dành thời gian quan tâm và đến dự tiệc. Sự hiện diện của mọi người là niềm hạnh phúc lớn lao của gia đình.</p>
-<p class="text-text-muted/50 text-xs mt-4">Designed with ❤️ for Dâu Tây's 1st Birthday</p>
-</div>
-    </footer>
-</div>
 
-<script>
-    // Thời gian tiệc: 18:00, Thứ Tư, 24/01/2024
-    const eventDate = new Date('2026-01-24T18:00:00');
-    
-    // Lưu giá trị cũ để so sánh
-    let previousValues = {
-        days: null,
-        hours: null,
-        minutes: null,
-        seconds: null
-    };
-    
-    // Hàm để trigger animation khi số thay đổi
-    function animateCountdown(elementId, containerId) {
-        const element = document.getElementById(elementId);
-        const container = document.getElementById(containerId);
-        
-        // Thêm animation cho số với hiệu ứng bounce
-        element.classList.remove('countdown-animate', 'animate-bounceIn');
-        void element.offsetWidth; // Trigger reflow để reset animation
-        element.classList.add('countdown-animate');
-        
-        // Thêm animation cho container với hiệu ứng pulse và glow
-        container.classList.remove('countdown-container-animate', 'animate-pulse');
-        void container.offsetWidth; // Trigger reflow
-        container.classList.add('countdown-container-animate', 'animate-pulse');
-        
-        // Xóa class sau khi animation kết thúc
-        setTimeout(() => {
+    <script>
+        // Thời gian tiệc: 18:00, Thứ Tư, 24/01/2024
+        const eventDate = new Date('2026-01-24T18:00:00');
+
+        // Lưu giá trị cũ để so sánh
+        let previousValues = {
+            days: null,
+            hours: null,
+            minutes: null,
+            seconds: null
+        };
+
+        // Hàm để trigger animation khi số thay đổi
+        function animateCountdown(elementId, containerId) {
+            const element = document.getElementById(elementId);
+            const container = document.getElementById(containerId);
+
+            // Thêm animation cho số với hiệu ứng bounce
             element.classList.remove('countdown-animate', 'animate-bounceIn');
-            container.classList.remove('countdown-container-animate', 'animate-pulse');
-        }, 600);
-    }
-    
-    function updateCountdown() {
-        const now = new Date();
-        const timeLeft = eventDate - now;
-        
-        // Nếu thời gian đã qua, hiển thị 00:00:00:00
-        if (timeLeft <= 0) {
-            document.getElementById('countdown-days').textContent = '00';
-            document.getElementById('countdown-hours').textContent = '00';
-            document.getElementById('countdown-minutes').textContent = '00';
-            document.getElementById('countdown-seconds').textContent = '00';
-            return;
-        }
-        
-        // Tính toán số ngày, giờ, phút, giây còn lại
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        
-        // Format số với 2 chữ số
-        const daysStr = String(days).padStart(2, '0');
-        const hoursStr = String(hours).padStart(2, '0');
-        const minutesStr = String(minutes).padStart(2, '0');
-        const secondsStr = String(seconds).padStart(2, '0');
-        
-        // Kiểm tra và cập nhật với animation nếu giá trị thay đổi
-        if (previousValues.days !== daysStr) {
-            document.getElementById('countdown-days').textContent = daysStr;
-            animateCountdown('countdown-days', 'countdown-days-container');
-            previousValues.days = daysStr;
-        }
-        
-        if (previousValues.hours !== hoursStr) {
-            document.getElementById('countdown-hours').textContent = hoursStr;
-            animateCountdown('countdown-hours', 'countdown-hours-container');
-            previousValues.hours = hoursStr;
-        }
-        
-        if (previousValues.minutes !== minutesStr) {
-            document.getElementById('countdown-minutes').textContent = minutesStr;
-            animateCountdown('countdown-minutes', 'countdown-minutes-container');
-            previousValues.minutes = minutesStr;
-        }
-        
-        // Giây luôn thay đổi, nên luôn có animation
-        if (previousValues.seconds !== secondsStr) {
-            document.getElementById('countdown-seconds').textContent = secondsStr;
-            animateCountdown('countdown-seconds', 'countdown-seconds-container');
-            previousValues.seconds = secondsStr;
-        }
-    }
-    
-    // Cập nhật ngay lập tức khi trang load
-    updateCountdown();
-    
-    // Cập nhật mỗi giây
-    setInterval(updateCountdown, 1000);
+            void element.offsetWidth; // Trigger reflow để reset animation
+            element.classList.add('countdown-animate');
 
-    // Xử lý audio player
-    document.addEventListener('DOMContentLoaded', function() {
-        const audio = document.getElementById('background-music');
-        const toggleButton = document.getElementById('music-toggle');
-        const musicIcon = document.getElementById('music-icon');
-        const volumeSlider = document.getElementById('music-volume');
-        
-        if (!audio || !toggleButton || !musicIcon || !volumeSlider) return;
-        
-        // Thiết lập volume ban đầu
-        audio.volume = volumeSlider.value / 100;
-        
-        // Tự động phát nhạc khi trang load (với xử lý autoplay policy)
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                // Phát thành công
-                musicIcon.textContent = 'pause';
-                toggleButton.classList.add('playing');
-            }).catch(error => {
-                // Autoplay bị chặn, cần user interaction
-                console.log('Autoplay bị chặn, cần click để phát nhạc');
-                musicIcon.textContent = 'play_arrow';
-            });
+            // Thêm animation cho container với hiệu ứng pulse và glow
+            container.classList.remove('countdown-container-animate', 'animate-pulse');
+            void container.offsetWidth; // Trigger reflow
+            container.classList.add('countdown-container-animate', 'animate-pulse');
+
+            // Xóa class sau khi animation kết thúc
+            setTimeout(() => {
+                element.classList.remove('countdown-animate', 'animate-bounceIn');
+                container.classList.remove('countdown-container-animate', 'animate-pulse');
+            }, 600);
         }
-        
-        // Toggle play/pause
-        toggleButton.addEventListener('click', function() {
-            if (audio.paused) {
-                audio.play().then(() => {
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeLeft = eventDate - now;
+
+            // Nếu thời gian đã qua, hiển thị 00:00:00:00
+            if (timeLeft <= 0) {
+                document.getElementById('countdown-days').textContent = '00';
+                document.getElementById('countdown-hours').textContent = '00';
+                document.getElementById('countdown-minutes').textContent = '00';
+                document.getElementById('countdown-seconds').textContent = '00';
+                return;
+            }
+
+            // Tính toán số ngày, giờ, phút, giây còn lại
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Format số với 2 chữ số
+            const daysStr = String(days).padStart(2, '0');
+            const hoursStr = String(hours).padStart(2, '0');
+            const minutesStr = String(minutes).padStart(2, '0');
+            const secondsStr = String(seconds).padStart(2, '0');
+
+            // Kiểm tra và cập nhật với animation nếu giá trị thay đổi
+            if (previousValues.days !== daysStr) {
+                document.getElementById('countdown-days').textContent = daysStr;
+                animateCountdown('countdown-days', 'countdown-days-container');
+                previousValues.days = daysStr;
+            }
+
+            if (previousValues.hours !== hoursStr) {
+                document.getElementById('countdown-hours').textContent = hoursStr;
+                animateCountdown('countdown-hours', 'countdown-hours-container');
+                previousValues.hours = hoursStr;
+            }
+
+            if (previousValues.minutes !== minutesStr) {
+                document.getElementById('countdown-minutes').textContent = minutesStr;
+                animateCountdown('countdown-minutes', 'countdown-minutes-container');
+                previousValues.minutes = minutesStr;
+            }
+
+            // Giây luôn thay đổi, nên luôn có animation
+            if (previousValues.seconds !== secondsStr) {
+                document.getElementById('countdown-seconds').textContent = secondsStr;
+                animateCountdown('countdown-seconds', 'countdown-seconds-container');
+                previousValues.seconds = secondsStr;
+            }
+        }
+
+        // Cập nhật ngay lập tức khi trang load
+        updateCountdown();
+
+        // Cập nhật mỗi giây
+        setInterval(updateCountdown, 1000);
+
+        // Xử lý audio player
+        document.addEventListener('DOMContentLoaded', function () {
+            const audio = document.getElementById('background-music');
+            const toggleButton = document.getElementById('music-toggle');
+            const musicIcon = document.getElementById('music-icon');
+            const volumeSlider = document.getElementById('music-volume');
+
+            if (!audio || !toggleButton || !musicIcon || !volumeSlider) return;
+
+            // Thiết lập volume ban đầu
+            audio.volume = volumeSlider.value / 100;
+
+            // Tự động phát nhạc khi trang load (với xử lý autoplay policy)
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Phát thành công
                     musicIcon.textContent = 'pause';
                     toggleButton.classList.add('playing');
                 }).catch(error => {
-                    console.error('Lỗi phát nhạc:', error);
+                    // Autoplay bị chặn, cần user interaction
+                    console.log('Autoplay bị chặn, cần click để phát nhạc');
+                    musicIcon.textContent = 'play_arrow';
                 });
-            } else {
-                audio.pause();
+            }
+
+            // Toggle play/pause
+            toggleButton.addEventListener('click', function () {
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        musicIcon.textContent = 'pause';
+                        toggleButton.classList.add('playing');
+                    }).catch(error => {
+                        console.error('Lỗi phát nhạc:', error);
+                    });
+                } else {
+                    audio.pause();
+                    musicIcon.textContent = 'play_arrow';
+                    toggleButton.classList.remove('playing');
+                }
+            });
+
+            // Điều chỉnh volume
+            volumeSlider.addEventListener('input', function () {
+                audio.volume = this.value / 100;
+                // Cập nhật icon volume
+                const volumeIcon = volumeSlider.nextElementSibling;
+                if (volumeIcon && volumeIcon.classList.contains('material-symbols-outlined')) {
+                    if (this.value == 0) {
+                        volumeIcon.textContent = 'volume_off';
+                    } else if (this.value < 50) {
+                        volumeIcon.textContent = 'volume_down';
+                    } else {
+                        volumeIcon.textContent = 'volume_up';
+                    }
+                }
+            });
+
+            // Cập nhật icon khi audio tự động pause/play
+            audio.addEventListener('play', function () {
+                musicIcon.textContent = 'pause';
+                toggleButton.classList.add('playing');
+            });
+
+            audio.addEventListener('pause', function () {
                 musicIcon.textContent = 'play_arrow';
                 toggleButton.classList.remove('playing');
-            }
+            });
+
+            // Xử lý khi audio kết thúc (nếu không loop)
+            audio.addEventListener('ended', function () {
+                musicIcon.textContent = 'play_arrow';
+                toggleButton.classList.remove('playing');
+            });
         });
-        
-        // Điều chỉnh volume
-        volumeSlider.addEventListener('input', function() {
-            audio.volume = this.value / 100;
-            // Cập nhật icon volume
-            const volumeIcon = volumeSlider.nextElementSibling;
-            if (volumeIcon && volumeIcon.classList.contains('material-symbols-outlined')) {
-                if (this.value == 0) {
-                    volumeIcon.textContent = 'volume_off';
-                } else if (this.value < 50) {
-                    volumeIcon.textContent = 'volume_down';
-                } else {
-                    volumeIcon.textContent = 'volume_up';
+
+        // Animation cho toàn bộ trang (fade-in + scroll reveal)
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.getElementById('main-content');
+            // Hiệu ứng fade-in cho toàn trang
+            requestAnimationFrame(() => {
+                mainContent.classList.add('page-animated');
+            });
+
+            // Hiệu ứng reveal khi cuộn cho các khu vực chính
+            const revealElements = document.querySelectorAll('header, section, footer');
+
+            revealElements.forEach((el) => {
+                el.classList.add('reveal-hidden');
+            });
+
+            const observer = new IntersectionObserver(
+                (entries, observerInstance) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('reveal-visible');
+                            entry.target.classList.remove('reveal-hidden');
+                            observerInstance.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.15,
                 }
+            );
+
+            revealElements.forEach((el) => observer.observe(el));
+        });
+
+        // Xử lý form đăng ký tham dự
+        document.getElementById('rsvp-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const fullname = document.getElementById('fullname').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const messageDiv = document.getElementById('form-message');
+
+            // Validate
+            if (!fullname || !phone) {
+                messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-red-50 text-red-600 border border-red-200';
+                messageDiv.textContent = 'Vui lòng điền đầy đủ thông tin!';
+                messageDiv.classList.remove('hidden');
+                return;
             }
-        });
-        
-        // Cập nhật icon khi audio tự động pause/play
-        audio.addEventListener('play', function() {
-            musicIcon.textContent = 'pause';
-            toggleButton.classList.add('playing');
-        });
-        
-        audio.addEventListener('pause', function() {
-            musicIcon.textContent = 'play_arrow';
-            toggleButton.classList.remove('playing');
-        });
-        
-        // Xử lý khi audio kết thúc (nếu không loop)
-        audio.addEventListener('ended', function() {
-            musicIcon.textContent = 'play_arrow';
-            toggleButton.classList.remove('playing');
-        });
-    });
 
-    // Animation cho toàn bộ trang (fade-in + scroll reveal)
-    document.addEventListener('DOMContentLoaded', () => {
-        const body = document.body;
-        // Hiệu ứng fade-in cho toàn trang
-        requestAnimationFrame(() => {
-            body.classList.add('page-animated');
-        });
-
-        // Hiệu ứng reveal khi cuộn cho các khu vực chính
-        const revealElements = document.querySelectorAll('header, section, footer');
-
-        revealElements.forEach((el) => {
-            el.classList.add('reveal-hidden');
-        });
-
-        const observer = new IntersectionObserver(
-            (entries, observerInstance) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('reveal-visible');
-                        entry.target.classList.remove('reveal-hidden');
-                        observerInstance.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                threshold: 0.15,
+            // Validate phone number (basic check)
+            const phoneRegex = /^[0-9]{10,11}$/;
+            if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+                messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-red-50 text-red-600 border border-red-200';
+                messageDiv.textContent = 'Số điện thoại không hợp lệ! Vui lòng nhập số điện thoại 10-11 chữ số.';
+                messageDiv.classList.remove('hidden');
+                return;
             }
-        );
 
-        revealElements.forEach((el) => observer.observe(el));
-    });
-
-    // Xử lý form đăng ký tham dự
-    document.getElementById('rsvp-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const fullname = document.getElementById('fullname').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const messageDiv = document.getElementById('form-message');
-        
-        // Validate
-        if (!fullname || !phone) {
-            messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-red-50 text-red-600 border border-red-200';
-            messageDiv.textContent = 'Vui lòng điền đầy đủ thông tin!';
-            messageDiv.classList.remove('hidden');
-            return;
-        }
-        
-        // Validate phone number (basic check)
-        const phoneRegex = /^[0-9]{10,11}$/;
-        if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
-            messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-red-50 text-red-600 border border-red-200';
-            messageDiv.textContent = 'Số điện thoại không hợp lệ! Vui lòng nhập số điện thoại 10-11 chữ số.';
-            messageDiv.classList.remove('hidden');
-            return;
-        }
-        
-        // Simulate form submission (you can replace this with actual API call)
-        messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-green-50 text-green-600 border border-green-200';
-        messageDiv.innerHTML = `
+            // Simulate form submission (you can replace this with actual API call)
+            messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-green-50 text-green-600 border border-green-200';
+            messageDiv.innerHTML = `
             <div class="flex items-center justify-center gap-2">
                 <span class="material-symbols-outlined">check_circle</span>
                 <span>Cảm ơn bạn đã xác nhận tham dự! Gia đình rất vui mừng được đón tiếp bạn.</span>
             </div>
         `;
-        messageDiv.classList.remove('hidden');
-        
-        // Reset form
-        document.getElementById('rsvp-form').reset();
-        
-        // Scroll to message
-        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
-        // Hide message after 5 seconds
-        setTimeout(() => {
-            messageDiv.classList.add('hidden');
-        }, 5000);
-    });
+            messageDiv.classList.remove('hidden');
 
-    // Link RSVP buttons to form section
-    document.addEventListener('DOMContentLoaded', function() {
-        // Find buttons by their text content
-        const buttons = document.querySelectorAll('button');
-        buttons.forEach(button => {
-            const buttonText = button.textContent.trim();
-            if (buttonText.includes('RSVP') || buttonText.includes('Xác nhận tham dự')) {
-                button.addEventListener('click', function(e) {
-                    // Only scroll if it's not the form submit button
-                    if (!button.closest('#rsvp-form')) {
-                        e.preventDefault();
-                        const formSection = document.getElementById('rsvp-form')?.closest('section');
-                        if (formSection) {
-                            formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            // Focus on first input
-                            setTimeout(() => {
-                                document.getElementById('fullname')?.focus();
-                            }, 500);
+            // Reset form
+            document.getElementById('rsvp-form').reset();
+
+            // Scroll to message
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                messageDiv.classList.add('hidden');
+            }, 5000);
+        });
+
+        // Xử lý form gửi lời chúc
+        function loadWishes() {
+            const localWishes = JSON.parse(localStorage.getItem('birthday-wishes') || '[]');
+
+            // Mock data
+            const mockWishes = [
+                {
+                    id: 'mock-1',
+                    name: 'Anh Bơ đẹp zai',
+                    message: 'Chúc em Dâu Tây sinh nhật vui vẻ 8386',
+                    timestamp: new Date().toISOString(),
+                    image: 'images/bo.png'
+                }
+            ];
+
+            // Combine wishes (mock wishes first or last? let's put them in the mix)
+            // We'll combine them and then sort by timestamp
+            const wishes = [...localWishes, ...mockWishes];
+
+            const wishesList = document.getElementById('wishes-list');
+            const wishCount = document.getElementById('wish-count');
+
+            if (!wishesList || !wishCount) return;
+
+            wishCount.textContent = `(${wishes.length})`;
+
+            if (wishes.length === 0) {
+                wishesList.innerHTML = `
+                <div class="text-center py-12 text-text-muted">
+                    <span class="material-symbols-outlined text-4xl mb-2 opacity-50">favorite</span>
+                    <p class="text-sm">Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc nhé!</p>
+                </div>
+            `;
+                return;
+            }
+
+            // Sắp xếp theo thời gian mới nhất
+            wishes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+            wishesList.innerHTML = wishes.map((wish, index) => {
+                const date = new Date(wish.timestamp);
+                const formattedDate = date.toLocaleDateString('vi-VN', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                let avatarHtml;
+                if (wish.image) {
+                    avatarHtml = `
+                    <div class="flex-shrink-0 size-12 rounded-full overflow-hidden border border-primary/10 shadow-sm group-hover:scale-110 transition-transform">
+                        <img src="${wish.image}" alt="${escapeHtml(wish.name)}" class="w-full h-full object-cover">
+                    </div>
+                `;
+                } else {
+                    // Emoji avatars based on name hash
+                    const emojis = ['🎉', '🎈', '🎂', '🎁', '💝', '🌟', '✨', '💖', '🎊', '🎀'];
+                    const emojiIndex = wish.name.charCodeAt(0) % emojis.length;
+                    const avatarEmoji = emojis[emojiIndex];
+
+                    avatarHtml = `
+                    <div class="flex-shrink-0 size-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-sm">
+                        ${avatarEmoji}
+                    </div>
+                `;
+                }
+
+                return `
+                <div class="wish-card bg-background-light rounded-xl p-4 border border-primary/10 hover:border-primary/30 hover:shadow-md transition-all animate-fadeIn group" style="animation-delay: ${index * 0.05}s">
+                    <div class="flex items-start gap-3">
+                        ${avatarHtml}
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between mb-2 flex-wrap gap-2">
+                                <h4 class="text-text-main font-bold text-base">${escapeHtml(wish.name)}</h4>
+                                <span class="text-text-muted text-xs whitespace-nowrap">${formattedDate}</span>
+                            </div>
+                            <p class="text-text-muted text-sm leading-relaxed whitespace-pre-wrap break-words">${escapeHtml(wish.message)}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function saveWish(name, message) {
+            const wishes = JSON.parse(localStorage.getItem('birthday-wishes') || '[]');
+            const newWish = {
+                id: Date.now(),
+                name: name.trim(),
+                message: message.trim(),
+                timestamp: new Date().toISOString()
+            };
+            wishes.push(newWish);
+            localStorage.setItem('birthday-wishes', JSON.stringify(wishes));
+            loadWishes();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const wishForm = document.getElementById('wish-form');
+            if (wishForm) {
+                wishForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const name = document.getElementById('wish-name').value.trim();
+                    const message = document.getElementById('wish-message').value.trim();
+                    const messageDiv = document.getElementById('wish-form-message');
+
+                    // Validate
+                    if (!name || !message) {
+                        messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-red-50 text-red-600 border border-red-200';
+                        messageDiv.textContent = 'Vui lòng điền đầy đủ thông tin!';
+                        messageDiv.classList.remove('hidden');
+                        return;
+                    }
+
+                    if (message.length > 500) {
+                        messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-red-50 text-red-600 border border-red-200';
+                        messageDiv.textContent = 'Lời chúc không được vượt quá 500 ký tự!';
+                        messageDiv.classList.remove('hidden');
+                        return;
+                    }
+
+                    // Save wish
+                    saveWish(name, message);
+
+                    // Show success message
+                    messageDiv.className = 'mt-4 p-4 rounded-xl text-sm font-medium text-center bg-green-50 text-green-600 border border-green-200';
+                    messageDiv.innerHTML = `
+                    <div class="flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span>Cảm ơn bạn đã gửi lời chúc! Lời chúc của bạn đã được ghi nhận.</span>
+                    </div>
+                `;
+                    messageDiv.classList.remove('hidden');
+
+                    // Reset form
+                    wishForm.reset();
+
+                    // Scroll to wishes list
+                    setTimeout(() => {
+                        document.getElementById('wishes-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300);
+
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        messageDiv.classList.add('hidden');
+                    }, 5000);
+                });
+
+                // Character counter
+                const messageInput = document.getElementById('wish-message');
+                if (messageInput) {
+                    messageInput.addEventListener('input', function () {
+                        const charCount = this.value.length;
+                        const counter = this.nextElementSibling;
+                        if (counter && counter.tagName === 'P') {
+                            counter.textContent = `${charCount}/500 ký tự`;
+                            if (charCount > 500) {
+                                counter.classList.add('text-red-500');
+                            } else {
+                                counter.classList.remove('text-red-500');
+                            }
                         }
+                    });
+                }
+            }
+
+            // Load wishes on page load
+            loadWishes();
+        });
+
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('mobile-menu-icon');
+
+            if (mobileMenuToggle && mobileMenu && menuIcon) {
+                mobileMenuToggle.addEventListener('click', function () {
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        menuIcon.textContent = 'close';
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.textContent = 'menu';
                     }
                 });
             }
-        });
-    });
-</script>
 
-</body></html>
+            // Smooth scroll for navigation links
+            const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetSection.offsetTop - headerHeight;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            menuIcon.textContent = 'menu';
+                        }
+                    }
+                });
+            });
+
+            // Active link on scroll - improved logic
+            const sections = document.querySelectorAll('section[id]');
+            const navLinksArray = Array.from(document.querySelectorAll('.nav-link, .nav-link-mobile'));
+            const headerHeight = document.querySelector('header').offsetHeight;
+
+            function updateActiveLink() {
+                const scrollPosition = window.scrollY + headerHeight + 50;
+                let currentSection = '';
+
+                // Check if we're at the top of the page
+                if (window.scrollY < 100) {
+                    currentSection = 'home';
+                } else {
+                    // Find which section is currently in view
+                    sections.forEach((section, index) => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+                        const sectionId = section.getAttribute('id');
+
+                        // Check if scroll position is within this section
+                        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                            currentSection = sectionId;
+                        }
+
+                        // If we're past the last section, highlight the last one
+                        if (index === sections.length - 1 && scrollPosition >= sectionTop) {
+                            currentSection = sectionId;
+                        }
+                    });
+                }
+
+                // Update all nav links
+                navLinksArray.forEach(link => {
+                    link.classList.remove('text-primary', 'font-bold');
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref === `#${currentSection}`) {
+                        link.classList.add('text-primary', 'font-bold');
+                    }
+                });
+            }
+
+            // Throttle scroll event for better performance
+            let ticking = false;
+            function onScroll() {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        updateActiveLink();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            updateActiveLink(); // Initial call
+
+            // Link RSVP buttons to form section
+            const rsvpButtons = document.querySelectorAll('#rsvp-header-btn, #rsvp-mobile-btn');
+            rsvpButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const formSection = document.getElementById('rsvp');
+                    if (formSection) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = formSection.offsetTop - headerHeight;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        // Focus on first input after scroll
+                        setTimeout(() => {
+                            document.getElementById('fullname')?.focus();
+                        }, 500);
+
+                        // Close mobile menu if open
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            menuIcon.textContent = 'menu';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
